@@ -7,7 +7,12 @@ class Locations {
     }
 
     function map(): string {
-        $response = $this->api->call();
+        try {
+            $response = $this->api->call();
+        } catch (Throwable $e) {
+            return 'oops';
+        }
+
         return $response['data']['name'];
     }
 }
